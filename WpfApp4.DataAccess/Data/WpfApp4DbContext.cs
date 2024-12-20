@@ -6,6 +6,7 @@ namespace WpfApp4.DataAccess.Data
     public class WpfApp4DbContext : DbContext
     {
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItem { get; set; }
         public virtual DbSet<Pizza> Pizzas { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }

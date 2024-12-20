@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -193,7 +194,18 @@ namespace WpfApp4
                 _userList.Remove(selectedUser);
                 _filteredUserList.Remove(selectedUser);
                 // TODO: Удаление из базы данных +
-                var user = _context.Users.Single(u => u.Id == selectedUser.Id);
+                var user = _context.Users.Include(u => u.Orders)
+                    .Single(u => u.Id == selectedUser.Id);
+
+                foreach (var order in user.Orders)
+                {
+                    var orderEntity = _context.Orders.Include(o => o.Items)
+                        .Single(o => o.Id == order.Id);
+
+                    _context.OrderItem.RemoveRange(orderEntity.Items);
+
+                    _context.Orders.Remove(orderEntity);
+                }
 
                 _context.Users.Remove(user);
 
