@@ -1,0 +1,100 @@
+﻿<Window x:Class="WpfApp4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4"
+        mc:Ignorable="d"
+        Title="Пиццерия - Авторизация" 
+        Height="600" 
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Text="Добро пожаловать в пиццерию!"
+                   FontFamily="Montserrat"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource PrimaryColor}"
+                   HorizontalAlignment="Center"
+                   Margin="0,40,0,20"/>
+
+        <!-- Основная панель -->
+        <Border Grid.Row="1"
+                Width="400"
+                Height="400"
+                Background="White"
+                CornerRadius="20"
+                Margin="0,0,0,40">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" 
+                                ShadowDepth="5" 
+                                Opacity="0.2"/>
+            </Border.Effect>
+
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Заголовок формы -->
+                <TextBlock Text="Авторизация"
+                           FontFamily="Montserrat"
+                           FontSize="24"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,30"/>
+
+                <!-- Поле Email -->
+                <TextBox Grid.Row="1"
+                         Style="{StaticResource MainTextBoxStyle}"
+                         Name="EmailTextBox"
+                         Tag="Email"
+                         Margin="0,0,0,15"/>
+
+                <!-- Поле пароля -->
+                <PasswordBox Grid.Row="2"
+             Style="{StaticResource MainPasswordBoxStyle}"
+             Name="PasswordBox"
+             Tag="Пароль"
+             Margin="0,0,0,30"/>
+
+                <!-- Кнопка входа -->
+                <Button Grid.Row="3"
+                        Content="Войти"
+                        Style="{StaticResource MainButtonStyle}"
+                        Name="LoginButton"
+                        Click="LoginButton_Click"/>
+
+                <!-- Разделитель -->
+                <TextBlock Grid.Row="4"
+                           Text="или"
+                           FontFamily="Roboto"
+                           FontSize="14"
+                           Foreground="#666666"
+                           HorizontalAlignment="Center"
+                           Margin="0,15"/>
+
+                <!-- Кнопка регистрации -->
+                <Button Grid.Row="5"
+                        Content="Зарегистрироваться"
+                        Style="{StaticResource MainButtonStyle}"
+                        Name="RegisterButton"
+                        Click="RegisterButton_Click"
+                        Background="{StaticResource AccentColor}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

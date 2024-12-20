@@ -1,0 +1,197 @@
+﻿<Window x:Class="WpfApp4.AdminMainMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4"
+        mc:Ignorable="d"
+        Title="Пиццерия - Панель администратора" 
+        Height="700" 
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <StackPanel Grid.Row="0" Margin="0,40,0,40">
+            <TextBlock Text="Панель администратора"
+                     FontFamily="Montserrat"
+                     FontSize="32"
+                     FontWeight="Bold"
+                     Foreground="{StaticResource PrimaryColor}"
+                     HorizontalAlignment="Center"/>
+            <TextBlock x:Name="AdminNameBlock"
+                     Text="Имя администратора"
+                     FontFamily="Montserrat"
+                     FontSize="24"
+                     FontWeight="SemiBold"
+                     Foreground="{StaticResource TextColor}"
+                     HorizontalAlignment="Center"
+                     Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <!-- Основная панель с кнопками -->
+        <Grid Grid.Row="1" Margin="40,0,40,40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Личный кабинет -->
+            <Border Grid.Column="0"
+                    Grid.Row="0"
+                    Background="White"
+                    CornerRadius="20"
+                    Margin="10"
+                    Cursor="Hand"
+                    MouseDown="ProfileSection_Click">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" 
+                                    ShadowDepth="5" 
+                                    Opacity="0.2"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Личный кабинет"
+                             FontFamily="Montserrat"
+                             FontSize="24"
+                             FontWeight="SemiBold"
+                             HorizontalAlignment="Center"
+                             Margin="0,20,0,10"/>
+                    <TextBlock Grid.Row="1"
+                             Text="Управление личными данными"
+                             FontFamily="Roboto"
+                             FontSize="16"
+                             TextAlignment="Center"
+                             TextWrapping="Wrap"
+                             Margin="20,0,20,20"/>
+                </Grid>
+            </Border>
+
+            <!-- Управление пиццей -->
+            <Border Grid.Column="1"
+                    Grid.Row="0"
+                    Background="White"
+                    CornerRadius="20"
+                    Margin="10"
+                    Cursor="Hand"
+                    MouseDown="PizzaManagementSection_Click">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" 
+                                    ShadowDepth="5" 
+                                    Opacity="0.2"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Управление меню"
+                             FontFamily="Montserrat"
+                             FontSize="24"
+                             FontWeight="SemiBold"
+                             HorizontalAlignment="Center"
+                             Margin="0,20,0,10"/>
+                    <TextBlock Grid.Row="1"
+                             Text="Добавление, редактирование и удаление пицц"
+                             FontFamily="Roboto"
+                             FontSize="16"
+                             TextAlignment="Center"
+                             TextWrapping="Wrap"
+                             Margin="20,0,20,20"/>
+                </Grid>
+            </Border>
+
+            <!-- Управление пользователями -->
+            <Border Grid.Column="0"
+                    Grid.Row="1"
+                    Background="White"
+                    CornerRadius="20"
+                    Margin="10"
+                    Cursor="Hand"
+                    MouseDown="UserManagementSection_Click">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" 
+                                    ShadowDepth="5" 
+                                    Opacity="0.2"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Управление пользователями"
+                             FontFamily="Montserrat"
+                             FontSize="24"
+                             FontWeight="SemiBold"
+                             HorizontalAlignment="Center"
+                             Margin="0,20,0,10"/>
+                    <TextBlock Grid.Row="1"
+                             Text="Управление учетными записями гостей"
+                             FontFamily="Roboto"
+                             FontSize="16"
+                             TextAlignment="Center"
+                             TextWrapping="Wrap"
+                             Margin="20,0,20,20"/>
+                </Grid>
+            </Border>
+
+            <!-- Просмотр заказов -->
+            <Border Grid.Column="1"
+                    Grid.Row="1"
+                    Background="White"
+                    CornerRadius="20"
+                    Margin="10"
+                    Cursor="Hand"
+                    MouseDown="OrderManagementSection_Click">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" 
+                                    ShadowDepth="5" 
+                                    Opacity="0.2"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Управление заказами"
+                             FontFamily="Montserrat"
+                             FontSize="24"
+                             FontWeight="SemiBold"
+                             HorizontalAlignment="Center"
+                             Margin="0,20,0,10"/>
+                    <TextBlock Grid.Row="1"
+                             Text="Просмотр и управление заказами"
+                             FontFamily="Roboto"
+                             FontSize="16"
+                             TextAlignment="Center"
+                             TextWrapping="Wrap"
+                             Margin="20,0,20,20"/>
+                </Grid>
+            </Border>
+
+            <!-- Кнопка выхода -->
+            <Button Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Content="Выйти из системы"
+                    Style="{StaticResource MainButtonStyle}"
+                    Background="Gray"
+                    Width="200"
+                    Margin="0,20,0,0"
+                    Click="LogoutButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>

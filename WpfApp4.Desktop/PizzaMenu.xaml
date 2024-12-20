@@ -1,0 +1,158 @@
+﻿<Window x:Class="WpfApp4.PizzaMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4"
+        mc:Ignorable="d"
+        Title="Пиццерия - Меню" 
+        Height="800" 
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Text="Меню пиццерии"
+                   FontFamily="Montserrat"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource PrimaryColor}"
+                   HorizontalAlignment="Center"
+                   Margin="0,30,0,30"/>
+
+        <!-- Список пицц -->
+        <ScrollViewer Grid.Row="1" 
+                      Margin="40,0,40,20"
+                      VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="PizzaListView">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="White"
+                                CornerRadius="15"
+                                Margin="0,0,0,20"
+                                Padding="20">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" 
+                                                ShadowDepth="3" 
+                                                Opacity="0.2"/>
+                            </Border.Effect>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Изображение пиццы -->
+                                <Border CornerRadius="10" 
+                                        ClipToBounds="True">
+                                    <Image Source="{Binding ImagePath}"
+                                           Width="180"
+                                           Height="180"
+                                           Stretch="UniformToFill"/>
+                                </Border>
+
+                                <!-- Информация о пицце -->
+                                <StackPanel Grid.Column="1" 
+                                          Margin="20,0">
+                                    <TextBlock Text="{Binding Name}"
+                                             FontFamily="Montserrat"
+                                             FontSize="24"
+                                             FontWeight="SemiBold"
+                                             Margin="0,0,0,10"/>
+                                    
+                                    <TextBlock Text="{Binding Description}"
+                                             FontFamily="Roboto"
+                                             FontSize="16"
+                                             TextWrapping="Wrap"
+                                             Margin="0,0,0,10"/>
+                                    
+                                    <TextBlock Text="{Binding Price, StringFormat='{}{0} руб.'}"
+                                             FontFamily="Montserrat"
+                                             FontSize="20"
+                                             FontWeight="Bold"
+                                             Foreground="{StaticResource PrimaryColor}"/>
+                                </StackPanel>
+
+                                <!-- Панель управления количеством -->
+                                <StackPanel Grid.Column="2" 
+                                          VerticalAlignment="Center"
+                                          Margin="20,0">
+                                    <StackPanel Orientation="Horizontal"
+                                              HorizontalAlignment="Center"
+                                              Margin="0,0,0,15">
+                                        <Button Content="-"
+                                                Width="40"
+                                                Height="40"
+                                                Style="{StaticResource MainButtonStyle}"
+                                                Click="DecrementButton_Click"
+                                                Tag="{Binding Id}"/>
+                                        
+                                        <TextBlock Text="{Binding Quantity}"
+                                                 FontFamily="Montserrat"
+                                                 FontSize="20"
+                                                 FontWeight="SemiBold"
+                                                 VerticalAlignment="Center"
+                                                 Margin="15,0"/>
+                                        
+                                        <Button Content="+"
+                                                Width="40"
+                                                Height="40"
+                                                Style="{StaticResource MainButtonStyle}"
+                                                Click="IncrementButton_Click"
+                                                Tag="{Binding Id}"/>
+                                    </StackPanel>
+
+                                    <Button Content="Добавить в корзину"
+                                            Style="{StaticResource MainButtonStyle}"
+                                            Click="AddToCartButton_Click"
+                                            Tag="{Binding Id}"
+                                            Width="200"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!-- Нижняя панель с кнопками -->
+        <Grid Grid.Row="2" 
+              Background="White"
+              Margin="20">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="10" 
+                                ShadowDepth="-3" 
+                                Opacity="0.2"/>
+            </Grid.Effect>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Кнопка возврата -->
+            <Button Grid.Column="0"
+                    Content="Вернуться в главное меню"
+                    Style="{StaticResource MainButtonStyle}"
+                    Click="BackButton_Click"
+                    Background="Gray"
+                    HorizontalAlignment="Left"
+                    Width="200"/>
+
+            <!-- Кнопка перехода в корзину -->
+            <Button Grid.Column="2"
+                    Content="Перейти в корзину"
+                    Style="{StaticResource MainButtonStyle}"
+                    Click="GoToCartButton_Click"
+                    Width="200"/>
+        </Grid>
+    </Grid>
+</Window>
