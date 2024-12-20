@@ -98,7 +98,7 @@ namespace WpfApp4
             }
             
             // TODO: Сохранение нового пароля в базу данных +
-            _admin.Password = currentPassword;
+            _admin.Password = newPassword;
 
             _context.Users.Update(_admin);
 

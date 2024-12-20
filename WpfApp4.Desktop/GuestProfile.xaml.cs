@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using WpfApp4.DataAccess.Data;
+using WpfApp4.DataAccess.Data.Models;
 using WpfApp4.Desktop.Helpers;
 
 namespace WpfApp4
@@ -9,6 +10,7 @@ namespace WpfApp4
         private string _userName;
         private string _userEmail;
         private readonly WpfApp4DbContext _context = new WpfApp4DbContext();
+        private User _user;
         public GuestProfile(string _userName)
         {
             InitializeComponent();
@@ -20,16 +22,16 @@ namespace WpfApp4
         private void LoadUserData()
         {
             // TODO: Загрузка данных пользователя из базы данных +
-            var user = _context.Users.Single(u => u.Id == SessionHandler.UserId);
+            _user = _context.Users.Single(u => u.Id == SessionHandler.UserId);
 
-            if (user is null) // это никогда не сработает просто так
+            if (_user is null) // это никогда не сработает просто так
             {
                 MessageBox.Show("Ошибка загрузки данных пользователя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            NameTextBlock.Text = user.Name;
-            EmailTextBlock.Text = user.Email;
+            NameTextBlock.Text = _user.Name;
+            EmailTextBlock.Text = _user.Email;
         }
 
         private void LoadOrderHistory()
@@ -85,18 +87,8 @@ namespace WpfApp4
                 return;
             }
 
-            // Найти пользователя по email
-            var user = _context.Users.FirstOrDefault(u => u.Email == _userEmail);
-
-            if (user == null)
-            {
-                MessageBox.Show("Пользователь не найден",
-                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             // Проверить старый пароль
-            if (user.Password != oldPassword)
+            if (_user.Password != oldPassword)
             {
                 MessageBox.Show("Неверный текущий пароль",
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -104,7 +96,7 @@ namespace WpfApp4
             }
 
             // Обновить пароль
-            user.Password = newPassword;
+            _user.Password = newPassword;
 
             try
             {
